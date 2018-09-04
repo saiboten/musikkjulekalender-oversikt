@@ -1,17 +1,9 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import { Route, Switch } from "react-router";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Add } from "./Add";
 import { See } from "./See";
-
-const Test = () => (
-  <div className="App">
-    <header className="App-header">
-      <h1 className="App-title">Heisann</h1>
-    </header>
-  </div>
-);
+import styled from "styled-components";
 
 const DefaultComponent = () => (
   <div className="App">
@@ -21,28 +13,24 @@ const DefaultComponent = () => (
   </div>
 );
 
+const Wrapper = styled.section`
+  padding: 4em;
+  background: papayawhip;
+  width: 920px;
+  margin: 2rem auto;
+`;
+
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <React.Fragment>
-          <ul>
-            <p>Menyvalg</p>
-            <li>
-              <Link to="/add">Legg til låt</Link>
-            </li>
-            <li>
-              <Link to="/see">Se låter</Link>
-            </li>
-          </ul>
-
+        <Wrapper>
           <Switch>
-            <Route component={See} path="/see" exact />
+            <Route component={See} path="/" exact />
             <Route component={Add} path="/add" exact />
-            <Route component={Test} path="/" exact />
             <Route component={DefaultComponent} />
           </Switch>
-        </React.Fragment>
+        </Wrapper>
       </BrowserRouter>
     );
   }

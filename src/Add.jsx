@@ -1,5 +1,13 @@
 import React from "react";
 import { firebaseApp } from "./firebase";
+import styled from "styled-components";
+
+const LabelSet = styled.div`
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
 
 export class Add extends React.Component {
   constructor(props) {
@@ -15,6 +23,7 @@ export class Add extends React.Component {
     this.updateSong = this.updateSong.bind(this);
     this.updateYear = this.updateYear.bind(this);
     this.submit = this.submit.bind(this);
+    this.readyToSubmit = this.readyToSubmit.bind(this);
   }
 
   updateArtist(e) {
@@ -30,9 +39,11 @@ export class Add extends React.Component {
   }
 
   updateYear(e) {
-    this.setState({
-      year: e.target.value
-    });
+    if (!isNaN(e.target.value) && e.target.value.length <= 4) {
+      this.setState({
+        year: e.target.value
+      });
+    }
   }
 
   submit(e) {
@@ -53,16 +64,46 @@ export class Add extends React.Component {
     });
   }
 
+  readyToSubmit() {
+    const { artist, year, song } = this.state;
+    return artist !== "" && year !== "" && song !== "";
+  }
+
   render() {
+    const submitButton = this.readyToSubmit() ? (
+      <button type="submit">Legg til</button>
+    ) : null;
+
     return (
       <form onSubmit={this.submit}>
-        <label>Artist</label>
-        <input value={this.state.artist} onChange={this.updateArtist} />
-        <label>Song</label>
-        <input value={this.state.song} onChange={this.updateSong} />
-        <label>Year</label>
-        <input value={this.state.year} onChange={this.updateYear} />
-        <button type="submit">Legg til</button>
+        <LabelSet>
+          <label htmlFor="artist">Artist</label>
+          <input
+            id="artist"
+            value={this.state.artist}
+            onChange={this.updateArtist}
+            autoComplete="off"
+          />
+        </LabelSet>
+        <LabelSet>
+          <label htmlFor="song">Song</label>
+          <input
+            autoComplete="off"
+            id="song"
+            value={this.state.song}
+            onChange={this.updateSong}
+          />
+        </LabelSet>
+        <LabelSet>
+          <label htmlFor="year">Year</label>
+          <input
+            autoComplete="off"
+            id="year"
+            value={this.state.year}
+            onChange={this.updateYear}
+          />
+        </LabelSet>
+        {submitButton}
       </form>
     );
   }
