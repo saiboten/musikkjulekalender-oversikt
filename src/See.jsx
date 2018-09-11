@@ -54,7 +54,7 @@ export class See extends React.Component {
 
   render() {
     const songs = this.state.activeSongs.map(song => (
-      <Song key={song.artist + song.song} {...song} />
+      <Song key={song.artist + song.song + song.year} {...song} />
     ));
 
     return (
