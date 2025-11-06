@@ -48,10 +48,28 @@ export const See: React.FC = () => {
   ));
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Musikkjulekalender - Oversikt</h1>
-      <TextFilter onChange={handleTextFilterChange} />
-      <ul className="list-none m-0 mt-5 p-0">{songElements}</ul>
+    <div className="w-full">
+      {/* Header with navigation */}
+      <div className="mb-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-center sm:text-left">
+          Musikkjulekalender - Oversikt
+        </h1>
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+          <TextFilter onChange={handleTextFilterChange} />
+          <a
+            href="/add"
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors w-full sm:w-auto text-center"
+          >
+            Legg til ny sang
+          </a>
+        </div>
+      </div>
+
+      {/* Songs list */}
+      <div className="mb-4 text-sm text-gray-600">
+        Viser {activeSongs.length} av {songs.length} sanger
+      </div>
+      <ul className="list-none m-0 p-0 space-y-2 sm:space-y-3">{songElements}</ul>
     </div>
   );
 };

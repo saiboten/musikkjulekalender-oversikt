@@ -15,12 +15,14 @@ const DefaultComponent: React.FC = () => (
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <section className="p-16 bg-papaya w-[920px] my-8 mx-auto">
-        <Switch>
-          <Route component={See} path="/" exact />
-          <Route component={Add} path="/add" exact />
-          <Route component={DefaultComponent} />
-        </Switch>
+      <section className="min-h-screen bg-papaya">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+          <Switch>
+            <Route component={See} path="/" exact />
+            <Route component={Add} path="/add" exact />
+            <Route component={DefaultComponent} />
+          </Switch>
+        </div>
       </section>
     </BrowserRouter>
   );

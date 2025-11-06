@@ -55,38 +55,73 @@ export const Add: React.FC = () => {
   ) : null;
 
   return (
-    <form onSubmit={submit}>
-      <div className="flex w-[300px] justify-between mb-2.5">
-        <label htmlFor="artist">Artist</label>
-        <input
-          id="artist"
-          value={artist}
-          onChange={updateArtist}
-          autoComplete="off"
-          className="border border-gray-300 px-2 py-1 rounded"
-        />
+    <div className="w-full max-w-md mx-auto">
+      {/* Header with navigation */}
+      <div className="mb-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-center sm:text-left">
+          Legg til ny sang
+        </h1>
+        <a
+          href="/"
+          className="inline-flex items-center text-blue-500 hover:text-blue-600 text-sm font-medium"
+        >
+          ← Tilbake til oversikt
+        </a>
       </div>
-      <div className="flex w-[300px] justify-between mb-2.5">
-        <label htmlFor="song">Song</label>
-        <input
-          autoComplete="off"
-          id="song"
-          value={song}
-          onChange={updateSong}
-          className="border border-gray-300 px-2 py-1 rounded"
-        />
-      </div>
-      <div className="flex w-[300px] justify-between mb-2.5">
-        <label htmlFor="year">Year</label>
-        <input
-          autoComplete="off"
-          id="year"
-          value={year}
-          onChange={updateYear}
-          className="border border-gray-300 px-2 py-1 rounded"
-        />
-      </div>
-      {submitButton}
-    </form>
+
+      {/* Form */}
+      <form onSubmit={submit} className="space-y-4">
+        <div className="space-y-2">
+          <label htmlFor="artist" className="block text-sm font-medium text-gray-700">
+            Artist
+          </label>
+          <input
+            id="artist"
+            value={artist}
+            onChange={updateArtist}
+            autoComplete="off"
+            className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Skriv inn artistnavn..."
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="song" className="block text-sm font-medium text-gray-700">
+            Sang
+          </label>
+          <input
+            autoComplete="off"
+            id="song"
+            value={song}
+            onChange={updateSong}
+            className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Skriv inn sangtittel..."
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="year" className="block text-sm font-medium text-gray-700">
+            År
+          </label>
+          <input
+            autoComplete="off"
+            id="year"
+            value={year}
+            onChange={updateYear}
+            className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="f.eks. 2023"
+          />
+        </div>
+
+        {submitButton && (
+          <button 
+            type="submit" 
+            className="w-full mt-6 px-4 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-medium"
+          >
+            Legg til sang
+          </button>
+        )}
+      </form>
+    </div>
   );
 };
