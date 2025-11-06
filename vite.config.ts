@@ -13,7 +13,7 @@ export default defineConfig(async () => {
       open: true
     },
     build: {
-      outDir: 'build',
+      outDir: 'dist',
       sourcemap: true
     },
     test: {
